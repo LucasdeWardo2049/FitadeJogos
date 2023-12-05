@@ -35,7 +35,7 @@ const Game = new mongoose.model (
     },
     // disponibilidade do jogo
     available: {
-        type: String,
+        type: Boolean,
         required: true
     },
     User: Object,

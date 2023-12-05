@@ -222,7 +222,7 @@ module.exports = class GameController {
       res.status(422).json({ message: "O ano é obrigatória!" });
       return;
     } else {
-      updateData.age = age;
+      updateData.year = year;
     }
 
     if (!price) {
