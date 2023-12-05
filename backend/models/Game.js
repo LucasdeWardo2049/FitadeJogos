@@ -14,6 +14,10 @@ const Game = new mongoose.model (
     description: {
         type: String,
     },
+     // genero do jogo
+     genre: {
+        type: String,
+    },
     // ano do jogo
     year: {
         type: Number,

@@ -13,6 +13,7 @@ module.exports = class GameController {
     const description = req.body.description;
     const price = req.body.price;
     const images = req.files;
+    const genre = req.body.genre;
     const available = true;
 
     // console.log(req.body)
@@ -54,6 +55,7 @@ module.exports = class GameController {
       name: name,
       year: year,
       description: description,
+      genre: genre,
       price: price,
       images: [],
       available: available,
@@ -181,6 +183,7 @@ module.exports = class GameController {
     const name = req.body.name;
     const year = req.body.year;
     const description = req.body.description;
+    const genre = req.body.genre;
     const price = req.body.price;
     const images = req.files;
     const available = req.body.available;
@@ -272,7 +275,7 @@ module.exports = class GameController {
       return;
     }
 
-    // checa se já alugou
+    // checagem se já alugou
     if (Game.Buyer) {
       if (Game.Buyer._id.equals(user._id)) {
         res.status(422).json({
