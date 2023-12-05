@@ -226,7 +226,7 @@ module.exports = class GameController {
     }
 
     if (!price) {
-      res.status(422).json({ message: "O peso é obrigatório!" });
+      res.status(422).json({ message: "O preco é obrigatório!" });
       return;
     } else {
       updateData.price = price;
