@@ -1,35 +1,28 @@
 const mongoose = require('../db/conn')
 const { Schema } = mongoose
 
-
-const User = new mongoose.model (
-    'User',
-    new Schema({
-    // Nome do usuário
+const User = mongoose.model(
+  'User',
+  new Schema({
     name: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
-    // Email do usuário
     email: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
-    // Senha do usuário
     password: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
-    // Imagem do usuário
     image: {
-        type: String
+      type: String,
     },
-    // Telefone do usuário
     phone: {
-        type: String,
-        required: true
-    }
-}, { timestamps: true }) ) // Opção para adicionar registros de data de criação e atualização
+      type: String,
+    },
+  }, {timestamps: true}),
+)
 
-
-module.exports = User // Exporta o modelo 'User'
+module.exports = User

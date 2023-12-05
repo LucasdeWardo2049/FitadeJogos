@@ -1,7 +1,7 @@
 const Game = require("../models/Game");
 
 // helpers
-const getUserByToken = require("../helpers/getUserByToken");
+const getUserByToken = require('../helpers/GetUserByToken');
 const getToken = require("../helpers/getToken");
 const ObjectId = require("mongoose").Types.ObjectId;
 
