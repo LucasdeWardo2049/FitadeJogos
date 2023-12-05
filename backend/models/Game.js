@@ -15,7 +15,7 @@ const Game = new mongoose.model (
         type: Number,
         required: true
     },
-    // Senha do jogo
+    // Preco do jogo
     price: {
         type: Number,
         required: true
@@ -25,7 +25,7 @@ const Game = new mongoose.model (
         type: Array,
         required: true
     },
-    // Telefone do jogo
+    // Disponibilidade do jogo
     available: {
         type: String,
         required: true
