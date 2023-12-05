@@ -3,15 +3,15 @@ const cors = require('cors')
 
 const app = express()
 
-// Config JSON response
+// Configuração para resposta em JSON
 app.use(express.json())
 
-//Solve Cors
-app.use(cors({credentials: true, origin: 'https://localhost:3000'}))
+// Solucionar o problema de CORS
+app.use(cors({ credentials: true, origin: 'https://localhost:3000' }))
 
-//Public folder for images
+// Pasta pública para imagens
 app.use(express.static('public/'))
 
-//Routes 
+// Rotas
 
-app.listen(5000)
+app.listen(5000) // Inicia o servidor na porta 5000
