@@ -141,16 +141,17 @@ module.exports = class UserController {
   }
 
   static async editUser(req, res) {
+    
     const token = getToken(req)
 
     //console.log(token);
-
+    // Obtém as informações do usuário com base no token
     const user = await getUserByToken(token)
     
     const { name, email, phone, password, confirmpassword } = req.body
-
+    // Inicializa a variável image como uma string vazia
     let image = ''
-
+    // Se um arquivo foi enviado, atribui o nome do arquivo à variável image
     if (req.file) {
       image = req.file.filename
     }
