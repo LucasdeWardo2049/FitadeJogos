@@ -3,17 +3,20 @@ const cors = require('cors')
 
 const app = express()
 
-// Configuração para resposta em JSON
+//Config JSON Response
 app.use(express.json())
 
-// Solucionar o problema de CORS
-app.use(cors({ credentials: true, origin: 'https://localhost:3000' }))
+//Solve Cors
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
 
-// Pasta pública para imagens
+//Public folder for images
 app.use(express.static('public'))
 
-const UserRoutes = require('Routes/UserRoutes')
-
+//Routes
+const UserRoutes = require('./routes/UserRoutes')
 app.use('/users', UserRoutes)
+const GameRoutes = require('./routes/GameRoutes')
+app.use('/games', GameRoutes)
 
-app.listen(5000) // Inicia o servidor na porta 5000
+
+app.listen(5000)

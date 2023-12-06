@@ -2,46 +2,42 @@ const mongoose = require('../db/conn')
 const { Schema } = mongoose
 
 
-const Game = new mongoose.model (
-    'Game',
-    new Schema({
-    // Nome do jogo
-    name: {
-        type: String,
-        required: true
-    },
-    // Descricao do jogo
-    description: {
-        type: String,
-    },
-     // genero do jogo
-     genre: {
-        type: String,
-    },
-    // ano do jogo
-    year: {
-        type: Number,
-        required: true
-    },
-    // preco do jogo
-    price: {
-        type: Number,
-        required: true
-    },
-    // Imagem do jogo
-    image: {
-        type: Array,
-        required: true
-    },
-    // disponibilidade do jogo
-    available: {
-        type: Boolean,
-        required: true
-    },
-    User: Object,
-    Buyer: Object,
-
-}, { timestamps: true }) ) // Opção para adicionar registros de data de criação e atualização
-
+const Game = mongoose.model(
+    "Game",
+    new Schema(
+      {
+        name: {
+          type: String,
+          required: true,
+        },
+        year: {
+          type: Number,
+          required: true,
+        },
+        description: {
+          type: String,
+          required: true,
+        },
+        price: {
+          type: Number,
+          required: true,
+        },
+        genre: {
+          type: String,
+          required: true,
+        },
+        images: {
+          type: Array,
+          required: true,
+        },
+        available: {
+          type: Boolean
+        },
+        user: Object,
+        buyer: Object,
+      },
+      { timestamps: true }
+    )
+  );
 
 module.exports = Game // Exporta o modelo 'Game'
