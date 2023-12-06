@@ -23,7 +23,7 @@ module.exports = class GameController {
       return;
     }
     if (!year) {
-      res.status(422).json({ message: "Idade é obrigatório" });
+      res.status(422).json({ message: "ano é obrigatório" });
       return;
     }
     if (!price) {
@@ -71,7 +71,7 @@ module.exports = class GameController {
 
     try {
       const newGame = await game.save();
-      res.status(201).json({ message: "game Cadastrado com Sucesso", newGame });
+      res.status(201).json({ message: "game cadastrado com sucesso", newGame });
     } catch (err) {
       res.status(500).json({ message: err });
     }
@@ -89,11 +89,11 @@ module.exports = class GameController {
 
     res.status(200).json({ games });
   }
-  static async getAllUserAdoptions(req, res) {
+  static async getAllUserPurchasedGames(req, res) {
     //get user from token
     const token = getToken(req);
     const user = await getUserByToken(token);
-    const games = await Game.find({ "adopter._id": user._id }).sort("-createdAt");
+    const games = await Game.find({ "buyer._id": user._id }).sort("-createdAt");
 
     res.status(200).json({ games });
   }
@@ -176,12 +176,12 @@ module.exports = class GameController {
     }
     updateData.name = name;
     if (!year) {
-      res.status(422).json({ message: "Idade é obrigatório" });
+      res.status(422).json({ message: "ano é obrigatório" });
       return;
     }
     updateData.year = year;
     if (!weight) {
-      res.status(422).json({ message: "Peso é obrigatório" });
+      res.status(422).json({ message: "preco é obrigatório" });
       return;
     }
     updateData.price = price;
@@ -229,17 +229,17 @@ module.exports = class GameController {
     }
 
     //check if user has already schedule a visit with this game
-    if (game.adopter) {
-      if (game.adopter._id.equals(user._id)) {
+    if (game.buyer) {
+      if (game.buyer._id.equals(user._id)) {
         res
           .status(422)
-          .json({ message: "Você já agendou uma visita com este game" });
+          .json({ message: "Você já comprou este game" });
         return;
       }
     }
 
     //add user to game
-    game.adopter = {
+    game.buyer = {
       _id: user._id,
       name: user.name,
       image: user.image,
@@ -250,7 +250,7 @@ module.exports = class GameController {
     res
       .status(200)
       .json({
-        message: `Visita Agendada com sucesso, entre em contato com ${game.user.name}, pelo o telefone ${game.user.phone}`,
+        message: `compra feita com sucesso pelo usuario ${game.user.name}, com o telefone ${game.user.phone}`,
       });
   }
   static async concludeAdoption(req, res){
@@ -279,6 +279,6 @@ module.exports = class GameController {
 
     await game.findByIdAndUpdate(id, game)
 
-    res.status(200).json({ message: "Parabéns! O ciclo de adoção foi finalizado com sucesso!"})
+    res.status(200).json({ message: "Parabéns! O ciclo de compra foi finalizado com sucesso!"})
   }
 };
